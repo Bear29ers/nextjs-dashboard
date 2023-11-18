@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import DashboardSkeleton from '../ui/skeletons';
+import DashboardSkeleton from '../../ui/skeletons';
 
 const Loading: FC = () => {
   return <DashboardSkeleton />;
