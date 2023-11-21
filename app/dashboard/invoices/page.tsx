@@ -1,8 +1,10 @@
 import { Suspense } from 'react';
 import type { NextPage } from 'next';
 
+import { fetchInvoicesPages } from '@/app/lib/data';
 import { lusitana } from '@/app/ui/fonts';
 import { CreateInvoice } from '@/app/ui/invoices/buttons';
+import Pagination from '@/app/ui/invoices/pagination';
 import Table from '@/app/ui/invoices/table';
 import Search from '@/app/ui/search';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
@@ -14,9 +16,11 @@ type Props = {
   };
 };
 
-const Page: NextPage<Props> = ({ searchParams }) => {
+const Page: NextPage<Props> = async ({ searchParams }) => {
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
+
+  const totalPages = await fetchInvoicesPages(query);
 
   return (
     <div className="w-full">
@@ -30,7 +34,9 @@ const Page: NextPage<Props> = ({ searchParams }) => {
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense>
-      <div className="mt-5 flex w-full justify-center">{/* <Pagination totalPages={totalPages} /> */}</div>
+      <div className="mt-5 flex w-full justify-center">
+        <Pagination totalPages={totalPages} />
+      </div>
     </div>
   );
 };
