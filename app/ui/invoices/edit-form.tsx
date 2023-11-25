@@ -2,16 +2,19 @@
 
 import Link from 'next/link';
 import { CheckIcon, ClockIcon, CurrencyDollarIcon, UserCircleIcon } from '@heroicons/react/24/outline';
+import { useFormState } from 'react-dom';
 
 import { updateInvoice } from '@/app/lib/actions';
 import { CustomerField, InvoiceForm } from '@/app/lib/definitions';
 import { Button } from '@/app/ui/button';
 
 export default function EditInvoiceForm({ invoice, customers }: { invoice: InvoiceForm; customers: CustomerField[] }) {
+  const initialState = { message: null, errors: {} };
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+  const [state, dispatch] = useFormState(updateInvoiceWithId, initialState);
 
   return (
-    <form action={updateInvoiceWithId}>
+    <form action={dispatch}>
       <input type="hidden" name="id" value={invoice.id} />
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
