@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { notFound } from 'next/navigation';
 
 import { fetchCustomers, fetchInvoiceById } from '@/app/lib/data';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
@@ -13,7 +14,10 @@ type Props = {
 const Page: NextPage = async ({ params }: Props) => {
   const id = params.id;
   const [invoice, customers] = await Promise.all([fetchInvoiceById(id), fetchCustomers()]);
-  console.log(invoice);
+
+  if (!invoice) {
+    notFound();
+  }
 
   return (
     <main>
