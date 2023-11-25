@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 
 import { fetchCustomers, fetchInvoiceById } from '@/app/lib/data';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
-import Form from '@/app/ui/invoices/create-form';
+import Form from '@/app/ui/invoices/edit-form';
 
 type Props = {
   params: {
@@ -10,9 +10,10 @@ type Props = {
   };
 };
 
-const Page: NextPage<Props> = async ({ params }) => {
+const Page: NextPage = async ({ params }: Props) => {
   const id = params.id;
   const [invoice, customers] = await Promise.all([fetchInvoiceById(id), fetchCustomers()]);
+  console.log(invoice);
 
   return (
     <main>
