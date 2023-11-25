@@ -31,7 +31,7 @@ const Page: NextPage = async ({ params }: Props) => {
           },
         ]}
       />
-      <Form invoice={invoice} customers={customers} />
+      <Form invoice={invoice!} customers={customers!} />
     </main>
   );
 };
