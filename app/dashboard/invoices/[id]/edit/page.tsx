@@ -1,10 +1,18 @@
 import type { NextPage } from 'next';
 
+import { fetchCustomers, fetchInvoiceById } from '@/app/lib/data';
 import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 import Form from '@/app/ui/invoices/create-form';
 
-const Page: NextPage = ({ params }: { params: { id: string } }) => {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+const Page: NextPage<Props> = async ({ params }) => {
   const id = params.id;
+  const [invoice, customers] = await Promise.all([fetchInvoiceById(id), fetchCustomers()]);
 
   return (
     <main>
@@ -18,7 +26,7 @@ const Page: NextPage = ({ params }: { params: { id: string } }) => {
           },
         ]}
       />
-      <Form invoices={invoice} customers={customers} />
+      <Form invoice={invoice} customers={customers} />
     </main>
   );
 };
