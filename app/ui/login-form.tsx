@@ -1,3 +1,5 @@
+'use client';
+
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { AtSymbolIcon, ExclamationCircleIcon, KeyIcon } from '@heroicons/react/24/outline';
 import { useFormState, useFormStatus } from 'react-dom';
