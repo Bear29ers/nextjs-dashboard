@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import type { NextPage } from 'next';
+import type { Metadata, NextPage } from 'next';
 
 import { fetchInvoicesPages } from '@/app/lib/data';
 import { lusitana } from '@/app/ui/fonts';
@@ -14,6 +14,10 @@ type Props = {
     query?: string;
     page?: string;
   };
+};
+
+export const metadata: Metadata = {
+  title: 'Invoices',
 };
 
 const Page: NextPage<Props> = async ({ searchParams }) => {
