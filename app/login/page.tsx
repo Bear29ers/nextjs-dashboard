@@ -1,7 +1,11 @@
-import type { NextPage } from 'next';
+import type { Metadata, NextPage } from 'next';
 
 import AcmeLogo from '../ui/acme-logo';
 import LoginForm from '../ui/login-form';
+
+export const metadata: Metadata = {
+  title: 'Login',
+};
 
 const LoginPage: NextPage = () => {
   return (
