@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import type { Metadata, NextPage } from 'next';
 import { notFound } from 'next/navigation';
 
 import { fetchCustomers, fetchInvoiceById } from '@/app/lib/data';
@@ -9,6 +9,10 @@ type Props = {
   params: {
     id: string;
   };
+};
+
+export const metadata: Metadata = {
+  title: 'Edit Invoices',
 };
 
 const Page: NextPage<Props> = async ({ params }) => {
