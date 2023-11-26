@@ -11,7 +11,7 @@ type Props = {
   };
 };
 
-const Page: NextPage = async ({ params }: Props) => {
+const Page: NextPage<Props> = async ({ params }) => {
   const id = params.id;
   const [invoice, customers] = await Promise.all([fetchInvoiceById(id), fetchCustomers()]);
 
